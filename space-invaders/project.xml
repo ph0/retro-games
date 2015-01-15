@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>  
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="Build">
+     <!--  -use-network=false... We've used this compiler option to overcome the local-with-file-system restriction
+ -->
+     <Exec Command="mxmlc src/SpaceInvaders.as -use-network=false -locale en_US -frame appFrame Main -static-link-runtime-shared-libraries=true -output SpaceInvaders.swf" />
+  </Target>
+  <Target Name="Play">
+     <Exec Command="dependencies\FlashPlayerDebugger SpaceInvaders.swf" />
+  </Target>
+  <Target Name="Clean">
+     <Exec Command="del /S /Q SpaceInvaders.swf" />	 
+  </Target>
+</Project>
