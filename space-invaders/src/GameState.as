@@ -4,22 +4,17 @@
 */   
 
 package
-{   
-   //import flash.display.Loader;
-   import flash.events.Event;
-   //import flash.events.MouseEvent;
-   import flash.events.KeyboardEvent;
-   //import flash.net.URLRequest; 
+{      
+   import flash.events.Event;   
+   import flash.events.KeyboardEvent;   
    import flash.ui.Keyboard;
    import flash.utils.getQualifiedClassName;
    
    import org.flixel.FlxG;
    import org.flixel.FlxPoint;
-   import org.flixel.FlxState;
-    
+   import org.flixel.FlxState;    
    import org.flixel.FlxSprite;
-   import org.flixel.FlxText;
-      
+         
    public class GameState extends FlxState				      
    {         
                                                                   
@@ -43,7 +38,6 @@ package
             addBody(new Invader(this, new FlxPoint(x, y))); 
          }
          /* Add a single player which will defend against the invaders */
-         //var obj:Player = new Player(this, new FlxPoint(FlxG.height, FlxG.width));
          addBody(new Player(this, new FlxPoint(FlxG.height, FlxG.width)));         
                         
          FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyBoarder.onKeyDown);
@@ -133,30 +127,17 @@ package
                while (nxt != null)
                {
                   if (getQualifiedClassName(nxt.get_data()) == "Invader")
-                  {
-                  
-                  /*
-                  Math.abs(invader.center.x - b.center.x) < b.size.x &&
-As invader "b" is covering the invader "invader" in terms of width(partially or completely) now find out it it is below the invader "invader"
-b.center.y > invader.center.y;                                    
-                  */
-                  
+                  {                                                     
                      if (Math.abs(Overrider(prv.get_data()).center.x - Overrider(nxt.get_data()).center.x) && (Overrider(nxt.get_data()).center.y > Overrider(prv.get_data()).center.y)) 
                      {
                         break;
-                     }                     
-                  
-                     /*if (Overrider(prv.get_data()).center.x == Overrider(nxt.get_data()).center.x)
-                     {
-                        break;
-                     }*/                     
+                     }                                                       
                   }
                   nxt = nxt.get_nxt();
                }
                
                if ((nxt == null) && (Math.random() > 0.995))
-               {
-               //{Bullet(center:FlxPoint, velocity:FlxPoint)
+               {               
                   addBody(new Bullet(new FlxPoint(Overrider(prv.get_data()).center.x, Overrider(prv.get_data()).center.y + Overrider(prv.get_data()).size.y + 20), new FlxPoint(0, 10)));                                  
                }
             }
@@ -205,18 +186,15 @@ b.center.y > invader.center.y;
          
          if (bodies == null) 
 		 {		 
-		    bodies = new Node(data);
-			//cur = bodies;			   
+		    bodies = new Node(data);					   
          } 
          else 
          {	
             var nxt:Node = bodies;
-            //var cur:Node = bodies;
             
             while (nxt != null)
             {
-               cur = nxt;
-               //nxt = cur.get_nxt();
+               cur = nxt;            
                nxt = nxt.get_nxt();
             }
   
@@ -225,8 +203,6 @@ b.center.y > invader.center.y;
             var node:Node = new Node(data);            
             node.set_prv(cur);
             cur.set_nxt(node); 
-            //node.set_prv(nxt);
-            //nxt.set_nxt(node);                        
          }                  
       }
       

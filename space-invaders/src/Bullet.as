@@ -34,9 +34,7 @@ package
              loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imgGotLoaded);
              loader.load(new URLRequest(CHARACTER));
              loader.name = CHARACTER;  
-          }
-          
-          //super(center, size);
+          }          
       }
       
       public function update():void   

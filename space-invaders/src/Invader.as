@@ -14,33 +14,17 @@ package
    import org.flixel.FlxSprite;
    
    public class Invader extends Overrider 
-   {  
-      //public var center:FlxPoint
-      /* The size of the player in the units of pixels */
-      //public var size:FlxPoint;
-   
+   {     
       public static const CHARACTER:String = "assets/images/Invader.png";
       public static var bitmap:BitmapData = null;
       
       private var gameState:GameState = null;
-      
-      //public var center:FlxPoint
-      /* The size of the player in the units of pixels */
-      //public var size:FlxPoint;
-      
+            
       private var patrolX:int = 0; /* Left/right distance covered by each invader and then collectively by the whole row */ 
       private var speedX:int = 5;  /* Speed at which to move left/right */
       private var patrolY:int = 0; /* Backward/forward distance covered */
       private var speedY:int = 1 /* 2 */;  /* Speed at which to move forward/backwards */
-      
-      //this.patrolX = 0; /* Left/right distance covered by each invader and then collectively by the whole row */
-      //this.speedX = 0.3; /* Speed at which to move left/right */
-      //this.patrolY = 0; /* Backward/forward distance covered */
-      //this.speedY = 0.3; /* Speed at which to move forward/backwards */
-      
-      /* It will have an image sprite */
-      //public var image:FlxSprite = null;
-      
+            
       public function Invader(gameState:GameState, center:FlxPoint)
       {
          var loader:Loader = null;
@@ -57,8 +41,6 @@ package
             loader.load(new URLRequest(CHARACTER));
             loader.name = CHARACTER;                  
          } 
-
-         //super(center, size);         
       }
       
       public function update():void      
@@ -83,5 +65,4 @@ package
          bitmap = e.target.content.bitmapData
       }           
    };
-};
- //Eight invaders per row and each invader has a width of 15 pixels and horizontally each invader is 15 pixels apart from the next invader in the same row(left sides of the invaders in the same row are 30 pixels apart) 
+}; 

@@ -5,7 +5,6 @@
 
 package 
 {
-   // add these import statements
    import flash.ui.Keyboard;
    import flash.events.Event;
    import flash.events.KeyboardEvent;
