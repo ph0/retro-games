@@ -10,6 +10,7 @@ package
 	
     //import flash.display.StageAlign;
     //import flash.display.StageScaleMode;
+    //import flash.external.*;
 	import org.flixel.*;
 		
 	[SWF(width=500, height=500, backgroundColor="#ffffff")]
@@ -26,8 +27,16 @@ package
 		{   		
            //stage.scaleMode = StageScaleMode.NO_SCALE;
            //stage.align = StageAlign.TOP_LEFT;
-		   		 					
+		   /*if (ExternalInterface.available) {
+               var s:Boolean;
+               var wrapperFunction:String = "externallyCalled";
+               //s = ExternalInterface.call(wrapperFunction);           
+               
+               //trace(s);
+           }*/
+           
 		   super(500, 500, GameState, 1, 20, 20);
+           
 		}					
 	}
 }

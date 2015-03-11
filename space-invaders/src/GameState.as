@@ -6,21 +6,25 @@
 package
 {      
    import flash.events.Event;   
-   import flash.events.KeyboardEvent;   
+   import flash.events.KeyboardEvent;  
+   //import flash.external.*;  
    import flash.ui.Keyboard;
    import flash.utils.getQualifiedClassName;
    
+   import org.flixel.FlxButton;
    import org.flixel.FlxG;
    import org.flixel.FlxPoint;
    import org.flixel.FlxState;    
    import org.flixel.FlxSprite;
          
    public class GameState extends FlxState				      
-   {         
+   {   
+      private var startGame:Boolean;   
+      private var button:FlxButton;                                                            
                                                                   
       /* It contains a Player, Ship, Rockets, Invaders and Bullets */
 	  private var bodies:Node; // Head of doubly linked list to store references of Loader instances      
-                                               
+                                                        
 	  public function GameState()
 	  {                   
          bodies = null;
@@ -38,11 +42,23 @@ package
             addBody(new Invader(this, new FlxPoint(x, y))); 
          }
          /* Add a single player which will defend against the invaders */
-         addBody(new Player(this, new FlxPoint(FlxG.height, FlxG.width)));         
-                        
+         addBody(new Player(this, new FlxPoint(FlxG.height, FlxG.width)));     
+                                 
          FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyBoarder.onKeyDown);
          FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, KeyBoarder.onKeyUp);
          
+         button = new FlxButton(200, 250, "START", startYourEngines);
+         add(button);
+         FlxG.mouse.show();
+         startGame = false;
+         
+         /*if (ExternalInterface.available) {
+               var s:Boolean;
+               var wrapperFunction:String = "externallyCalled";externallyCalled
+               s = ExternalInterface.call("externallyCalled");                          
+               trace(s);
+         }*/
+                  
 		 super.create();
 	  }
 	  
@@ -53,98 +69,99 @@ package
 	  
 	  /* Override this function to update your class's position and appearance */
 	  override public function update():void 
-	  {           
-         var nxt:Node = bodies;
+	  {  
+         if (startGame == true) {        
+            var nxt:Node = bodies;
                   
-         while (nxt != null && Player.bitmap != null && Invader.bitmap != null && Bullet.bitmap != null)
-         {         
-            var data:* = nxt.get_data();
+            while (nxt != null && Player.bitmap != null && Invader.bitmap != null && Bullet.bitmap != null)
+            {         
+               var data:* = nxt.get_data();
             
-            var body:Overrider = Overrider(data);
+               var body:Overrider = Overrider(data);
             
-            if (body.image != null)
-            {
-               remove(body.image);
-               body.image = null;                  
-            }
-            
-            body.image = new FlxSprite(body.center.x - body.size.x / 2, body.center.y); 
-            
-            if (getQualifiedClassName(data) == "Player")
-            {
-               body.image.pixels = Player.bitmap;
-               Player(data).update();
-            }
-            else if (getQualifiedClassName(data) == "Invader")
-            {
-               body.image.pixels = Invader.bitmap;
-               Invader(data).update();
-            }
-            else if (getQualifiedClassName(data) == "Bullet")
-            {            
-               body.image.pixels = Bullet.bitmap;
-               Bullet(data).update();
-            }
-                        
-            add(body.image);
-         
-            nxt = nxt.get_nxt();
-         }
-                                                                        
-         /* REPORT COLLISIONS */         
-         var prv:Node = bodies;
-                           
-         while (prv != null) 
-         {                        
-            nxt = prv.get_nxt();                        
-            while (nxt != null)
-            {                             
-               /* Now we've prv<--nxt and prv-->nxt relationship, check if they are colliding or not */
-               if (isColliding(prv.get_data(), nxt.get_data()) == true)                
+               if (body.image != null)
                {
-                  remove(Overrider(prv.get_data()).image);                
-                  removeBody(prv);
-                  remove(Overrider(nxt.get_data()).image);
-                  removeBody(nxt);
-               }                               
+                  remove(body.image);
+                  body.image = null;                  
+               }
+            
+               body.image = new FlxSprite(body.center.x - body.size.x / 2, body.center.y); 
+            
+               if (getQualifiedClassName(data) == "Player")
+               {
+                  body.image.pixels = Player.bitmap;
+                  Player(data).update();
+               }
+               else if (getQualifiedClassName(data) == "Invader")
+               {
+                  body.image.pixels = Invader.bitmap;
+                  Invader(data).update();
+               }
+               else if (getQualifiedClassName(data) == "Bullet")
+               {            
+                  body.image.pixels = Bullet.bitmap;
+                  Bullet(data).update();
+               }
+                        
+               add(body.image);
+         
                nxt = nxt.get_nxt();
             }
-            /* REMOVE OUT OF FRAME BULLETS */ 
-            if (getQualifiedClassName(prv.get_data()) == "Bullet")
-            {            
-               var overrider:Overrider = Overrider(prv.get_data()); 
-               if (overrider.center.y < 0 || overrider.center.y > FlxG.height)
-               {
-                  remove(overrider.image);
-                  removeBody(prv);
-               }
-            } 
-            /* REMOVE OUT OF FRAME BULLETS ENDS HERE */ 
-            /* FOR EACH INVADER WHICH HAS NO INVADER BELOW OF IT, FIRE BULLET */            
-            if (getQualifiedClassName(prv.get_data()) == "Invader")
-            {
+                                                                        
+            /* REPORT COLLISIONS */         
+            var prv:Node = bodies;
+                           
+            while (prv != null) 
+            {                        
                nxt = prv.get_nxt();                        
                while (nxt != null)
-               {
-                  if (getQualifiedClassName(nxt.get_data()) == "Invader")
-                  {                                                     
-                     if (Math.abs(Overrider(prv.get_data()).center.x - Overrider(nxt.get_data()).center.x) && (Overrider(nxt.get_data()).center.y > Overrider(prv.get_data()).center.y)) 
-                     {
-                        break;
-                     }                                                       
-                  }
+               {                             
+                  /* Now we've prv<--nxt and prv-->nxt relationship, check if they are colliding or not */
+                  if (isColliding(prv.get_data(), nxt.get_data()) == true)                
+                  {
+                     remove(Overrider(prv.get_data()).image);                
+                     removeBody(prv);
+                     remove(Overrider(nxt.get_data()).image);
+                     removeBody(nxt);
+                  }                               
                   nxt = nxt.get_nxt();
                }
+               /* REMOVE OUT OF FRAME BULLETS */ 
+               if (getQualifiedClassName(prv.get_data()) == "Bullet")
+               {            
+                  var overrider:Overrider = Overrider(prv.get_data()); 
+                  if (overrider.center.y < 0 || overrider.center.y > FlxG.height)
+                  {
+                     remove(overrider.image);
+                     removeBody(prv);
+                  }
+               }  
+               /* REMOVE OUT OF FRAME BULLETS ENDS HERE */ 
+               /* FOR EACH INVADER WHICH HAS NO INVADER BELOW OF IT, FIRE BULLET */            
+               if (getQualifiedClassName(prv.get_data()) == "Invader")
+               {
+                  nxt = prv.get_nxt();                        
+                  while (nxt != null)
+                  {
+                     if (getQualifiedClassName(nxt.get_data()) == "Invader")
+                     {                                                     
+                        if (Math.abs(Overrider(prv.get_data()).center.x - Overrider(nxt.get_data()).center.x) && (Overrider(nxt.get_data()).center.y > Overrider(prv.get_data()).center.y)) 
+                        {
+                           break;
+                        }                                                       
+                     }
+                     nxt = nxt.get_nxt();
+                  }
                
-               if ((nxt == null) && (Math.random() > 0.995))
-               {               
-                  addBody(new Bullet(new FlxPoint(Overrider(prv.get_data()).center.x, Overrider(prv.get_data()).center.y + Overrider(prv.get_data()).size.y + 20), new FlxPoint(0, 10)));                                  
+                  if ((nxt == null) && (Math.random() > 0.995))
+                  {               
+                     addBody(new Bullet(new FlxPoint(Overrider(prv.get_data()).center.x, Overrider(prv.get_data()).center.y + Overrider(prv.get_data()).size.y + 20), new FlxPoint(0, 10)));                                  
+                  }
                }
+               /* FOR EACH INVADER WHICH HAS NO INVADER BELOW OF IT, FIRE BULLET ENDS HERE */
+               prv = prv.get_nxt();
             }
-            /* FOR EACH INVADER WHICH HAS NO INVADER BELOW OF IT, FIRE BULLET ENDS HERE */
-            prv = prv.get_nxt();
-         }
-                                               
+         }                                      
 		 super.update();
 	  }
       
@@ -232,6 +249,14 @@ package
                }            
             }         
          }                                
-      }              
+      }
+      
+      public function startYourEngines():void 
+      {			
+         remove(button);
+         FlxG.mouse.hide();
+         startGame = true;
+	  }           
+      
    }; // End of class		
 }; // End of package
