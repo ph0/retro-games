@@ -1,5 +1,5 @@
 //gameBoard.java
-//Written by, Sohail Qayum Malik[sqm@hckers.pk]
+//Written by, Sohail Qayum Malik
 
 package Hanoi;
 

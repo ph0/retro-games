@@ -1,5 +1,5 @@
 //mouseMovementControls.java
-//Wtitten by, Sohail Qayum Malik[sqm@hackers.pk]
+//Wtitten by, Sohail Qayum Malik
 
 package Hanoi;
 

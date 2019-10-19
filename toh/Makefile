@@ -1,6 +1,6 @@
 # Makefile
 # Project: TOH, Being done in Java 6 on Windows XP machine
-# Written by, Sohail Qayum Malik[sqm@hackers.pk]
+# Written by, Sohail Qayum Malik
 
 .PHONY					: all clean  
 

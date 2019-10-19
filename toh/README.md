@@ -12,6 +12,6 @@ No disk may be placed on top of a smaller disk.
 
 In order to move a disk between poles, click on the pole where the disk is and then click on the pole where you want the disk to move. Try to move the entire stack to another pole in fewer moves.
 
-TOH is alive at http://hackers.pk and it is written by, Sohail Qayum Malik
+TOH is written by, Sohail Qayum Malik
 
 ![Screenshot of Towers Of Hanoi](screenshot.png)

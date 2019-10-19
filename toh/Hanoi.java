@@ -1,5 +1,5 @@
 //Hanoi.java
-//Written by, Sohail Qayum Malik[sqm@hackers.pk]
+//Written by, Sohail Qayum Malik
 
 //This applet won't be using the javax.swing GUI components inherited by javax.swing.JApplet
 //This applet will do all its graphics rendring usging java.awt.Graphics libraries 
