@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 // NibblesRandomEventGenerator.java                           //
-// Written by, Sohail Qayum Malik[sqm@hackers.pk]			  //
+// Written by, Sohail Qayum Malik                             //
 // Last modified on Thursday, 25th of June, 2010.             //
 ////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////
 // NibblesFunctions.java, does most of software rasterization         //
-// Written by, Sohail Qayum Malik[sqm@hackers.pk]                     //
+// Written by, Sohail Qayum Malik                                     //
 // Last modified on, Monday, 7th of March, 2010 @7:12AM               //
 ////////////////////////////////////////////////////////////////////////
 

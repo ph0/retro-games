@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 // NibblesKeyBoardControls.java                               //
-// @author, Sohail Qayum Malik[sqm@hackers.pk]                //
+// @author, Sohail Qayum Malik                                //
 // Last modified on Saturday, 10th of November, 2012.         //
 ////////////////////////////////////////////////////////////////
 

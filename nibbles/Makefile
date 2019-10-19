@@ -1,5 +1,5 @@
 # Makefile
-# Written by, Sohail Qayum Malik[sqm@hackers.pk]
+# Written by, Sohail Qayum Malik
 
 all				: Nibbles\NibblesConstants.class benchmark\benchmark.class Nibbles\NibblesKeyBoardControls.class Nibbles\NibblesRandomEventGenerator.class Nibbles\NibblesBox.class Nibbles\NibblesGraphicsFunctions.class Nibbles\NibblesFunctions.class Nibbles.class
 

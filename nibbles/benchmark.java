@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 // benchmark.java, very poor way to benchmark                 //
-// @author, Sohail Qayum Malik[sqm@hackers.pk]                //
+// @author, Sohail Qayum Malik                                //
 // Last modified on Saturday, 10th of November, 2012.         //
 ////////////////////////////////////////////////////////////////
 package benchmark;

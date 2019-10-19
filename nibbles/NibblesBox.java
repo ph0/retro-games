@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////
 // NibblesBox.java                                            //
-// Written by, Sohail Qayum Malik[sqm@hackers.pk]			  //
+// Written by, Sohail Qayum Malik			      //
 // Last modified on, Sunday, 20th of February, 2011.          //
 ////////////////////////////////////////////////////////////////
 
