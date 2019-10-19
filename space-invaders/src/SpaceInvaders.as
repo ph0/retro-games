@@ -1,6 +1,6 @@
 /* 
    src/SpaceInvaders.as - (The Preloader)
-   Written by, Sohail Qayum Malik[sqm@hackers.pk]
+   Written by, Sohail Qayum Malik
 */   
    
 package

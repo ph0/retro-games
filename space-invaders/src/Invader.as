@@ -1,6 +1,6 @@
 /*
    src/Invader.as (the recipe of invader, the invader attacks the earth)
-   Written by, Sohail Qayum Malik[sqm@hackers.pk]
+   Written by, Sohail Qayum Malik
 */
 
 package 

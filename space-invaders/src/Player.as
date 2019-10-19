@@ -1,6 +1,6 @@
 /*
    src/Player.as (the recipe of player, the player defends the earth against the invaders)
-   Written by, Sohail Qayum Malik[sqm@hackers.pk]   
+   Written by, Sohail Qayum Malik   
 */
 
 package 

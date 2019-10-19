@@ -1,6 +1,6 @@
 /*
    src/Main.as - Main.as, it is an actual application class; don't tell this to FB) 
-   Written by, Sohail Qayum Malik[sqm@hackers.pk]
+   Written by, Sohail Qayum Malik
    Note to self... 
    To use your preloader in an ActionScript Project you need to make your preloader the default application and make your default application run in frame 2 by adding "-frame appFrame MyApp" in the additional compiler arguments, where MyApp is the classname of your main class file, which would've been in the frame one instead of preloader, if you would've not been using the preloading and bootstrapping the main class
 */   
